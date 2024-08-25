@@ -1,0 +1,25 @@
+.appbase{
+ width: 100vw;
+ height: 100vh;
+ background: rgb(5, 44, 56);
+ background-image: url(./Media//Vagaro_Logo.png);
+ background-repeat: no-repeat;
+ background-position: center;
+ background-size:contain;
+ color: white;
+ padding: 1rem;
+}
+
+
+
+
+video{  
+    width: 100%;
+    height: auto;
+    opacity: 1;
+    transform:scaleX(-1); /* Mirror effect*/
+    transition: opacity 0.3s ease;  /*Smooth transition for fade effect*/
+    /* border-radius: 8px; */
+    /* border: 1px solid #ddd; */
+}
+

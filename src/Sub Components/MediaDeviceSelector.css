@@ -1,0 +1,12 @@
+.option-container{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+select{
+    border: none;
+    padding: 5px;
+    width: min-content;
+    max-width: 100%;
+}
