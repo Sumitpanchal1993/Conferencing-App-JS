@@ -1,11 +1,12 @@
 import React from 'react'
 import './SplButtons.css'
 
-function SplButtons({svg, work}) {
+function SplButtons({icon, work}) {
   return (
     <>
       <button className='splBtn' onClick={()=>{work()}}>
-       <img src={svg} alt="" /> 
+      {icon}
+      {/* <span class="material-symbols-outlined">{icon}</span> */}
       </button>
     </>
   )

@@ -3,7 +3,7 @@ import React from "react";
 import "./Screen2.css";
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from '../Components/Navbar'
-
+import ChatScreen from "../Components/ChatScreen";
 import Camera from "../Sub Components/Camera";
 // import { increment, decrement } from "../Redux/CounterSlice"; 
 
@@ -18,10 +18,37 @@ function Screen2() {
     <>
       <div className="screen2-base">
         <div className="main-display">
-          <div className="screen">
-            <Camera/>
+          <div className="screen">            
+            {/* <div className="peoples"><Camera/></div> */}
+            <div className="peoples"></div>
+            <div className="peoples"></div>
+            <div className="peoples"></div>
+            <div className="peoples"></div>
+            <div className="peoples"></div>
+            <div className="peoples"></div>
+            <div className="peoples"></div>
+            <div className="peoples"></div>
+            <div className="peoples"></div>
+            <div className="peoples"></div>
+            <div className="peoples"></div>
+            <div className="peoples"></div>
+            <div className="peoples"></div>
+            <div className="peoples"></div>
+            <div className="peoples"></div>
+            <div className="peoples"></div>
+            <div className="peoples"></div>
+            <div className="peoples"></div>
+            <div className="peoples"></div>
+            <div className="peoples"></div>
+            <div className="peoples"></div>
+            <div className="peoples"></div>
+            <div className="peoples"></div>
+            <div className="peoples"></div>
+        
           </div>
-          <div className="side-Pannel">Peoples</div>
+          <div className="side-Pannel">
+            <ChatScreen/>
+          </div>
         </div>
         <div className="controller">
           <Navbar/>             
