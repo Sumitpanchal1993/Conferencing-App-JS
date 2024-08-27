@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import SplButtons from '../Sub Components/SplButtons'
 import ShareScreen from '../Media/ShareScreen.svg'
 import './Navbar.css'
@@ -61,7 +62,7 @@ function Navbar() {
         )
       })}
       {/* <ScreeShare/> */}
-      <button>End Call</button>
+      <button><Link to ={'/screen3'}>End Call</Link></button>
 
     </div>
    </nav>

@@ -1,0 +1,38 @@
+.screen3_base {
+  flex-direction: column;
+  backdrop-filter: blur(15px);
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px black;
+  transition: all 1s ease-in-out;
+  transition: linear;
+}
+
+.feedback {
+  display: flex;
+  flex-direction: column;
+}
+
+.feedback textarea {
+  outline: none;
+  padding: 1rem;
+  width: 100%;
+  font-family: cursive;
+  margin: 5px 0;
+}
+
+.rating {
+  gap: 2rem;
+  margin: 0 10px;
+  justify-content: space-between;
+}
+
+/* @keyframes gradientAnimation {
+    from{
+        background-image: linear-gradient(green, blue);
+    }
+    to{
+        background-image: linear-gradient(red, yellow);
+    }
+} */

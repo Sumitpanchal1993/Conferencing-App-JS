@@ -29,22 +29,7 @@ function Screen2() {
             <div className="peoples"></div>
             <div className="peoples"></div>
             <div className="peoples"></div>
-            <div className="peoples"></div>
-            <div className="peoples"></div>
-            <div className="peoples"></div>
-            <div className="peoples"></div>
-            <div className="peoples"></div>
-            <div className="peoples"></div>
-            <div className="peoples"></div>
-            <div className="peoples"></div>
-            <div className="peoples"></div>
-            <div className="peoples"></div>
-            <div className="peoples"></div>
-            <div className="peoples"></div>
-            <div className="peoples"></div>
-            <div className="peoples"></div>
-            <div className="peoples"></div>
-        
+            <div className="peoples"></div>       
           </div>
           <div className="side-Pannel">
             <ChatScreen/>
