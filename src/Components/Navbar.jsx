@@ -9,31 +9,31 @@ import ScreeShare from './ScreeShare'
 
 const buttonIcons = [
   {
-    icon : <span class="material-symbols-outlined">desktop_windows</span>,
+    icon : <span className="material-symbols-outlined">desktop_windows</span>,
     work :()=>{},
   },
   {
-    icon : <span class="material-symbols-outlined">radio_button_checked</span>,
+    icon : <span className="material-symbols-outlined">radio_button_checked</span>,
     work :()=>{},
   },
   {
-    icon : <span class="material-symbols-outlined">videocam</span>,
+    icon : <span className="material-symbols-outlined">videocam</span>,
     work :()=>{},
   },
   {
-    icon : <span class="material-symbols-outlined">mic</span>,
+    icon : <span className="material-symbols-outlined">mic</span>,
     work :()=>{},
   },
   {
-    icon : <span class="material-symbols-outlined">chat</span>,
+    icon : <span className="material-symbols-outlined">chat</span>,
     work :()=>{},
   },
   {
-    icon : <span class="material-symbols-outlined">groups</span>,
+    icon : <span className="material-symbols-outlined">groups</span>,
     work :()=>{},
   },
   {
-    icon : <span class="material-symbols-outlined">settings</span>,
+    icon : <span className="material-symbols-outlined">settings</span>,
     work :()=>{},
   },
 ]

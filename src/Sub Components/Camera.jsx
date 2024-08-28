@@ -63,7 +63,7 @@ function Camera() {
           opacity: isCameraActive ? 1 : 0, // Smooth fade effect
         }}
       ></video>
-      <div>
+      <div className="camera-control">
         <button onClick={toggleCamera}>
           {isCameraActive ? (
             <span className="material-symbols-outlined">videocam</span>

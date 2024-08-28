@@ -40,7 +40,7 @@ function Screen3() {
         </div>
       
         <div>
-          <button onClick={()=>{}}><Link to={'/'}>Dismiss</Link></button>
+          <button onClick={()=>{alert("Do you want to cancel")}}><Link to={'/'}>Dismiss</Link></button>
           <button onClick={()=>{submitFeedback()}}><Link>Send Feedback</Link></button>
         </div>
       </div>

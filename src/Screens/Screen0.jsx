@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 function Screen0() {
-    const [username, setUsername] = useState('')
-    console.log(username)
+    const [userName, setUsername] = useState('')
+    console.log(userName)
 
   return (
     <>

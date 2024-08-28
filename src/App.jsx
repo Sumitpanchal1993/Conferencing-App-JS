@@ -22,8 +22,11 @@ function App() {
   const [camera, setCamera] = useState(null) //Selected camera
   const [microphone, setMicrophone] = useState(null) //Selected microphone
   const [speaker, setSpeaker] = useState(null) //Selected Speaker
-  const [] = useState(null) 
-  const [] = useState(null)
+  const [isRecording, setIsRecording] = useState(false)  //for the recording status
+  const [micForAll, setMicForAll] = useState(false)  //for allowing mic for all
+  const [videoForAll, setVideoForAll] = useState(false)  // for allowing video for all
+  const [chatForAll, setChatForAll] = useState(false)  // for allowing all to chat
+  const [isinstructorOnly, setisinstructorOnly] = useState(false) // for only instructor mode
 
   // const displayName = 'Sumit Panchal'
 

@@ -19,17 +19,16 @@ function Screen2() {
       <div className="screen2-base">
         <div className="main-display">
           <div className="screen">            
-            {/* <div className="peoples"><Camera/></div> */}
-            <div className="peoples"></div>
-            <div className="peoples"></div>
-            <div className="peoples"></div>
-            <div className="peoples"></div>
-            <div className="peoples"></div>
-            <div className="peoples"></div>
-            <div className="peoples"></div>
-            <div className="peoples"></div>
-            <div className="peoples"></div>
-            <div className="peoples"></div>       
+            <div className="peoples"><Camera/></div>          
+            <div className="peoples"><Camera/></div>          
+            <div className="peoples"><Camera/></div>          
+            <div className="peoples"><Camera/></div>          
+            <div className="peoples"><Camera/></div>          
+            <div className="peoples"><Camera/></div>          
+            <div className="peoples"><Camera/></div>          
+            <div className="peoples"><Camera/></div>          
+            <div className="peoples"><Camera/></div>          
+            <div className="peoples"><Camera/></div>       
           </div>
           <div className="side-Pannel">
             <ChatScreen/>
