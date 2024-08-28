@@ -12,13 +12,3 @@
 
 
 
-video{  
-    width: 100%;
-    height: auto;
-    opacity: 1;
-    transform:scaleX(-1); /* Mirror effect*/
-    transition: opacity 0.3s ease;  /*Smooth transition for fade effect*/
-    /* border-radius: 8px; */
-    /* border: 1px solid #ddd; */
-}
-

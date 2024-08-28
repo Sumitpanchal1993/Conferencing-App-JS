@@ -5,8 +5,8 @@ import Camera from "../Sub Components/Camera";
 import ToggleSwitch from "../Sub Components/ToggleSwitch";
 // import HardwareSelector from "../Sub Components/HardwareSelector";
 import MediaDeviceSelector from "../Sub Components/MediaDeviceSelector";
-import './Screen1.css'
-import Logo from '../Media/Vagaro_Logo.png'
+import "./Screen1.css";
+import Logo from "../Media/Vagaro_Logo.png";
 
 // For Host Controls options
 const optionArray = [
@@ -23,10 +23,10 @@ function startCall() {
 
 function cancelCall() {
   console.log("cancel call");
-  location.reload()
+  location.reload();
 }
 
-function Screen1() {
+function Screen1({ setCamera, setMicrophone, setSpeaker, setDevicesList }) {
   return (
     <>
       <div className="screen1_base">
@@ -40,24 +40,28 @@ function Screen1() {
               <Camera />
             </div>
             <div>
-              {optionArray.map((item, index)=>{
-                return(
-                  <ToggleSwitch label={item} key={index} />
-                )
+              {optionArray.map((item, index) => {
+                return <ToggleSwitch label={item} key={index} />;
               })}
-              
             </div>
           </div>
           <div className="screen1_selector_RHS">
             <h3>Manage Settings</h3>
-            <MediaDeviceSelector />
+            <MediaDeviceSelector
+              setCamera={setCamera}
+              setMicrophone={setMicrophone}
+              setSpeaker={setSpeaker}
+              setDevicesList={setDevicesList}
+            />
           </div>
         </div>
         <hr />
-            <div>
-              <button onClick={startCall}><Link to='/screen2'>Start Call</Link> </button>
-              <button onClick={cancelCall}>Cancel</button>
-            </div>
+        <div>
+          <button onClick={startCall}>
+            <Link to="/screen2">Start Call</Link>{" "}
+          </button>
+          <button onClick={cancelCall}>Cancel</button>
+        </div>
       </div>
     </>
   );

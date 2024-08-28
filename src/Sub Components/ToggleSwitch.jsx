@@ -3,7 +3,7 @@ import "./ToggleSwitch.css"; // Import the CSS file for styling
 
 function ToggleSwitch({label}) {
   const [isSwitchOn, setIsSwitchOn] = useState(false);
-  console.log(isSwitchOn)
+  // console.log(isSwitchOn)
 
   const handleToggle = () => {
     setIsSwitchOn((prevState) => !prevState);

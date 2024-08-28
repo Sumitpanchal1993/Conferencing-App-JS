@@ -7,6 +7,8 @@ function Camera() {
   const [isCameraActive, setIsCameraActive] = useState(true);
   const [isAudioActive, setIsAudioActive] = useState(true); // New state for audio
 
+
+
   useEffect(() => {
     const startCamera = async () => {
       try {
@@ -51,6 +53,8 @@ function Camera() {
   const toggleAudio = () => {
     setIsAudioActive((prevState) => !prevState);
   };
+
+
 
   return (
     <div className="camera-view flexWraper">

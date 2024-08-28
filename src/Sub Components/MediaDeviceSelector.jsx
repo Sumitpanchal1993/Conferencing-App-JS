@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./MediaDeviceSelector.css";
 
-function MediaDeviceSelector() {
-  const [devices, setDevices] = useState([]);
+function MediaDeviceSelector({setCamera, setMicrophone, setSpeaker, setDevicesList}) {
   const [cameras, setCameras] = useState([]);
   const [microphones, setMicrophones] = useState([]);
   const [speakers, setSpeakers] = useState([]);
@@ -23,11 +22,10 @@ function MediaDeviceSelector() {
         const speakers = deviceList.filter(
           (device) => { return device.kind === "audiooutput";
         });
-        console.table(deviceList)
         setCameras(cameras);
         setMicrophones(microphones);
         setSpeakers(speakers);
-        setDevices(deviceList);
+        setDevicesList(deviceList);
       } catch (err) {
         console.error("Error fetching media devices:", err);
       }
@@ -38,15 +36,21 @@ function MediaDeviceSelector() {
 
 
 
+
+
   const handleCameraChange = (event) => {
+    setCamera(event.target.value)
     setSelectedCamera(event.target.value);
+
   };
 
   const handleMicrophoneChange = (event) => {
+    setMicrophone(event.target.value)
     setSelectedMicrophone(event.target.value);
   };
 
   const handleSpeakerChange = (event) => {
+    setSpeaker(event.target.value)
     setSelectedSpeaker(event.target.value);
   };
 

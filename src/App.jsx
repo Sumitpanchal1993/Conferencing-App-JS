@@ -1,32 +1,55 @@
 import { useMemo, useState } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// import { fetchDevices } from "./Utility/FetchDevices";
 
 //Azure Imports
 // import { AzureCommunicationTokenCredential } from "@azure/communication-common";
 // import { CallComposite, fromFlatCommunicationIdentifier, useAzureCommunicationCallAdapter } from "@azure/communication-react";
 
 // Custom Components imports
-import Screen0 from "./Screens/Screen0"
+import Screen0 from "./Screens/Screen0";
 import Screen1 from "./Screens/Screen1";
 import Screen2 from "./Screens/Screen2";
 import Screen3 from "./Screens/Screen3";
 import Screen4 from "./Screens/Screen4";
 
 function App() {
-  const [userToken, setUserToken] = useState(null) //for user token from backend
-  const [userName, setUserName] = useState(null) //for user name 
-  const [camerasList, setCamerasList] = useState(null) //list of cameras
-  const [microphonesList, setMicrophonesList] = useState(null) //list of microphone
-  const [speakeresList, setSpeakersList] = useState(null) //list of audio output
-  const [camera, setCamera] = useState(null) //Selected camera
-  const [microphone, setMicrophone] = useState(null) //Selected microphone
-  const [speaker, setSpeaker] = useState(null) //Selected Speaker
-  const [isRecording, setIsRecording] = useState(false)  //for the recording status
-  const [micForAll, setMicForAll] = useState(false)  //for allowing mic for all
-  const [videoForAll, setVideoForAll] = useState(false)  // for allowing video for all
-  const [chatForAll, setChatForAll] = useState(false)  // for allowing all to chat
-  const [isinstructorOnly, setisinstructorOnly] = useState(false) // for only instructor mode
+  const [userToken, setUserToken] = useState(null); //for user token from backend
+  const [userName, setUserName] = useState(null); //for user name
+  const [devicesList, setDevicesList] = useState(null);
+  const [camerasList, setCamerasList] = useState(null); //list of cameras
+  const [microphonesList, setMicrophonesList] = useState(null); //list of microphone
+  const [speakeresList, setSpeakersList] = useState(null); //list of audio output
+  const [camera, setCamera] = useState(null); //Selected camera
+  const [microphone, setMicrophone] = useState(null); //Selected microphone
+  const [speaker, setSpeaker] = useState(null); //Selected Speaker
+  const [isRecording, setIsRecording] = useState(false); //for the recording status
+  const [micForAll, setMicForAll] = useState(false); //for allowing mic for all
+  const [videoForAll, setVideoForAll] = useState(false); // for allowing video for all
+  const [chatForAll, setChatForAll] = useState(false); // for allowing all to chat
+  const [isinstructorOnly, setisinstructorOnly] = useState(false); // for only instructor mode
+
+  // console.log(camera)
+  // console.log(microphone)
+  // console.log(speaker)
+
+  // funcions
+  // const fetchDevices = async () => {
+  //   try {
+  //     const deviceList = await navigator.mediaDevices.enumerateDevices();
+  //     const cameras = deviceList.filter((device) => device.kind === "videoinput");
+  //     const microphones = deviceList.filter((device) => device.kind === "audioinput");
+  //     const speakers = deviceList.filter((device) => device.kind === "audiooutput");
+  //     console.table(deviceList);
+  //     setCamerasList(cameras);
+  //     setMicrophonesList(microphones);
+  //     setSpeakersList(speakers);
+  //     setDevices(deviceList);
+  //   } catch (err) {
+  //     console.error("Error fetching media devices:", err);
+  //   }
+  // };
 
   // const displayName = 'Sumit Panchal'
 
@@ -36,7 +59,6 @@ function App() {
   // const [teamMeetingLink, setTeamMeetingLink] = useState('')
   // const [message, setMessage] = useState('This is Message')
 
-
   // Create ACS Credentials
   // const credentials = useMemo(()=>{
   //   if(token){
@@ -44,7 +66,7 @@ function App() {
   //   }
   //   return
   // },[token])
- 
+
   // // Create ACS call adapter for Call Component
   // const callAdapterArgs = useMemo(()=>{
   //   if(credentials && userID && token  && teamMeetingLink && message ){
@@ -53,12 +75,12 @@ function App() {
   //     displayName,
   //     credentials,
   //     locator : {meetingLink:teamMeetingLink},
-  //     } 
-        
-  //   }
-  //  },[userID, displayName, credentials, teamMeetingLink]) 
+  //     }
 
-   //Create ACS call adapter 
+  //   }
+  //  },[userID, displayName, credentials, teamMeetingLink])
+
+  //Create ACS call adapter
 
   //  const callAdaper = useAzureCommunicationCallAdapter(callAdapterArgs);
 
@@ -68,10 +90,20 @@ function App() {
         <div className="appbase flexWraper">
           <Routes>
             <Route path="/" element={<Screen0 />} />
-            <Route path="/Screen1" element={<Screen1 />} />
+            <Route
+              path="/Screen1"
+              element={
+                <Screen1
+                  setCamera={setCamera}
+                  setMicrophone={setMicrophone}
+                  setSpeaker={setSpeaker}
+                  setDevicesList={setDevicesList}
+                />
+              }
+            />
             <Route path="/screen2" element={<Screen2 />} />
             <Route path="/screen3" element={<Screen3 />} />
-            <Route path="/screen3" element={<Screen4 />} />
+            <Route path="/screen4" element={<Screen4 />} />
           </Routes>
         </div>
       </Router>
