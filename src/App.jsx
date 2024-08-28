@@ -89,9 +89,9 @@ function App() {
       <Router>
         <div className="appbase flexWraper">
           <Routes>
-            <Route path="/" element={<Screen0 />} />
+            {/* <Route path="/" element={<Screen0 />} /> */}
             <Route
-              path="/Screen1"
+              path="/"
               element={
                 <Screen1
                   setCamera={setCamera}
