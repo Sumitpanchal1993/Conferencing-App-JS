@@ -1,14 +1,16 @@
 .peopleTile{
+    display: flex;
+    align-items: center;
     justify-content: space-between;
     backdrop-filter: blur(15px);
-    background: black;
+    background: rgb(78, 76, 76);
     padding: 10px;
     border-radius: 10px;
     margin: 10px;
 }
 
 .details .userImage{
-    background-color: lightcoral;
+    background-color: darkorange;
     text-align: center;
     color: white;
     width: 35px;
