@@ -12,7 +12,6 @@ import Screen0 from "./Screens/Screen0";
 import Screen1 from "./Screens/Screen1";
 import Screen2 from "./Screens/Screen2";
 import Screen3 from "./Screens/Screen3";
-import Screen4 from "./Screens/Screen4";
 
 function App() {
   const [userToken, setUserToken] = useState(null); //for user token from backend
@@ -103,7 +102,6 @@ function App() {
             />
             <Route path="/screen2" element={<Screen2 />} />
             <Route path="/screen3" element={<Screen3 />} />
-            <Route path="/screen4" element={<Screen4 />} />
           </Routes>
         </div>
       </Router>

@@ -35,6 +35,11 @@ function Screen2() {
           <div className="screen">            
             <div className="peoples"><Camera/></div>          
             <div className="peoples"><Camera/></div>      
+            <div className="peoples"><Camera/></div>      
+            {/* <div className="peoples"><Camera/></div>      
+            <div className="peoples"><Camera/></div>      
+            <div className="peoples"><Camera/></div>      
+            <div className="peoples"><Camera/></div>       */}
              
           </div>
           <div className="side-Pannel">
