@@ -8,10 +8,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // import { CallComposite, fromFlatCommunicationIdentifier, useAzureCommunicationCallAdapter } from "@azure/communication-react";
 
 // Custom Components imports
-import Screen0 from "./Screens/Screen0";
+// import Screen0 from "./Screens/Screen0";
 import Screen1 from "./Screens/Screen1";
 import Screen2 from "./Screens/Screen2";
 import Screen3 from "./Screens/Screen3";
+import TestScreen from "./Screens/TestScreen";
 
 function App() {
   const [userToken, setUserToken] = useState(null); //for user token from backend
@@ -88,7 +89,8 @@ function App() {
       <Router>
         <div className="appbase flexWraper">
           <Routes>
-            {/* <Route path="/" element={<Screen0 />} /> */}
+            <Route path="/test" element={<TestScreen />} />
+            {/* <Route path="/screen0" element={<Screen0 />} /> */}
             <Route
               path="/"
               element={

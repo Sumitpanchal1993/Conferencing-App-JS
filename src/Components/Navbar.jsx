@@ -1,11 +1,10 @@
 import React, {useState, useRef} from 'react'
 import { Link } from 'react-router-dom'
 import SplButtons from '../Sub Components/SplButtons'
-import ShareScreen from '../Media/ShareScreen.svg'
+// import ShareScreen from '../Media/ShareScreen.svg'
 import './Navbar.css'
 import HostName from '../Sub Components/HostName'
-import ScreeShare from './ScreeShare'
-
+// import ScreeShare from './ScreeShare'
 
 
 function Navbar({setIsChatShown, setIsPeoplesList}) {
@@ -39,7 +38,14 @@ function Navbar({setIsChatShown, setIsPeoplesList}) {
     },
     {
       icon : <span className="material-symbols-outlined">videocam</span>,
-      work :()=>{alert('i will stop the camera')},
+      work :()=>{
+         let  doc = Array.from (document.getElementsByClassName('camera-view'))
+         doc.forEach((item)=>{
+          if(item.style.display === 'flex' ){
+            item.style.display = 'none' 
+          }else{item.style.display = 'flex' }
+         })      
+      },
     },
     {
       icon : <span className="material-symbols-outlined">mic</span>,
