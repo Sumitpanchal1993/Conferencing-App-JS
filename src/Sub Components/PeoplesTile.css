@@ -1,0 +1,18 @@
+.peopleTile{
+    justify-content: space-between;
+    backdrop-filter: blur(15px);
+    background: black;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.details .userImage{
+    background-color: lightcoral;
+    text-align: center;
+    color: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    margin-right: 5px;
+}

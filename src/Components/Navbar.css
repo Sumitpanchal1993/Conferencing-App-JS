@@ -7,3 +7,24 @@ nav{
     justify-content: space-between;
     background: black;
 }
+
+.screenShare{
+    position: absolute;
+    /* border: 1px solid white; */
+    bottom: 60px;
+    left: 0;
+    display: none;
+    /* width: 15rem; */
+
+
+}
+
+.screenShare video{
+    width: 240px;
+}
+
+.screenShare button{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 // import { Link } from "react-router-dom";
 import "./Screen2.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,10 +6,24 @@ import Navbar from '../Components/Navbar'
 import ChatScreen from "../Components/ChatScreen";
 import Camera from "../Sub Components/Camera";
 // import { increment, decrement } from "../Redux/CounterSlice"; 
+import PeoplesTile from "../Sub Components/PeoplesTile";
 
+
+const peoples = [
+  {name: 'Sumit'},
+  {name: 'Manoj'},
+  {name: 'Kanishk'},
+  {name: 'Ashwini'},
+  {name: 'Gokul'},
+  {name: 'Sujeet'},
+]
 
 
 function Screen2() {
+  const [isChatshown, setIsChatShown] = useState(true)  
+  const [isPeoplesList, setIsPeoplesList] = useState(false)
+
+
   const storeData = useSelector((data) => {
     return data.counter.value;
   });
@@ -20,22 +34,20 @@ function Screen2() {
         <div className="main-display">
           <div className="screen">            
             <div className="peoples"><Camera/></div>          
-            <div className="peoples"><Camera/></div>          
-            <div className="peoples"><Camera/></div>          
-            <div className="peoples"><Camera/></div>          
-            <div className="peoples"><Camera/></div>          
-            <div className="peoples"><Camera/></div>          
-            <div className="peoples"><Camera/></div>          
-            <div className="peoples"><Camera/></div>          
-            <div className="peoples"><Camera/></div>          
-            <div className="peoples"><Camera/></div>       
+            <div className="peoples"><Camera/></div>      
+             
           </div>
           <div className="side-Pannel">
-            <ChatScreen/>
+            {isChatshown ? <ChatScreen/>:peoples.map((item)=>{
+              return <PeoplesTile name={item.name}/>
+            })}
           </div>
         </div>
         <div className="controller">
-          <Navbar/>             
+          <Navbar 
+            setIsChatShown={setIsChatShown}
+            setIsPeoplesList={setIsPeoplesList}
+          />             
         </div>
       </div>
     </>

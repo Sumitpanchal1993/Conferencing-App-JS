@@ -7,6 +7,7 @@
     height: 100%;
     background: grey;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding-bottom: 1.5rem;
 
 }
 
@@ -47,25 +48,25 @@ button {
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #0056b3;
-}
+
 
 .from-other{
-    background-image: linear-gradient(blue, green);
-    color: white;
+    background: lightgrey ;
+    /* color: white; */
     clear: right;
     float: left;
     border-radius: 1rem;
+    margin: 5px;
 }
 
 
 .from-user{    
-    background-image: linear-gradient(red, black);
-    color: white;
-    background-color: green;
+    background: lightblue;
+    /* color: white; */
+    /* background-color: green; */
     clear: left;
+    margin: 5px;
     float: right;
     border-radius: 1rem;
-    width: min-content;
+    width: max-content;
 }
