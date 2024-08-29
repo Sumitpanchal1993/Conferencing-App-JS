@@ -8,7 +8,11 @@ import ScreeShare from './ScreeShare'
 
 
 
+<<<<<<< HEAD
 function Navbar({setIsChatShown, setIsPeoplesList}) {
+=======
+function Navbar({setIsChatShown}) {
+>>>>>>> 6965b29ac53c2a26ae5d680bed33030af2a01e8a
   const [isSharing, setIsSharing] = useState(false);
   const videoRef = useRef(null);
   const streamRef = useRef(null);
@@ -49,16 +53,25 @@ function Navbar({setIsChatShown, setIsPeoplesList}) {
       icon : <span className="material-symbols-outlined">chat</span>,
       work :function handleController (){
         setIsChatShown(true)
+<<<<<<< HEAD
         setIsPeoplesList(false)
         let k = document.querySelector(".side-Pannel")
         if(k.style.display === 'none'){
           k.style.display = 'block';
         }
         else{k.style.display = 'none'}
+=======
+        let k = document.querySelector(".side-Pannel")
+        if(k.style.display === 'block'){
+          k.style.display = 'none';
+        }
+        else{k.style.display = 'block'}
+>>>>>>> 6965b29ac53c2a26ae5d680bed33030af2a01e8a
       },
     },
     {
       icon : <span className="material-symbols-outlined">groups</span>,
+<<<<<<< HEAD
       work :function handleController (){
         setIsChatShown(false)
         setIsPeoplesList(true)
@@ -68,6 +81,9 @@ function Navbar({setIsChatShown, setIsPeoplesList}) {
         }
         else{k.style.display = 'none'}
       }
+=======
+      work :()=>{alert('I will Show the List of peoples in meeting')},
+>>>>>>> 6965b29ac53c2a26ae5d680bed33030af2a01e8a
     },
     {
       icon : <span className="material-symbols-outlined">settings</span>,
