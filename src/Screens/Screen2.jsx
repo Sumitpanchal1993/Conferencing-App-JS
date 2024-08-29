@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 // import { Link } from "react-router-dom";
 import "./Screen2.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,6 +10,7 @@ import Camera from "../Sub Components/Camera";
 
 
 function Screen2() {
+  const [isChatshown, setIsChatShown] = useState(true)
   const storeData = useSelector((data) => {
     return data.counter.value;
   });
@@ -20,22 +21,17 @@ function Screen2() {
         <div className="main-display">
           <div className="screen">            
             <div className="peoples"><Camera/></div>          
-            <div className="peoples"><Camera/></div>          
-            <div className="peoples"><Camera/></div>          
-            <div className="peoples"><Camera/></div>          
-            <div className="peoples"><Camera/></div>          
-            <div className="peoples"><Camera/></div>          
-            <div className="peoples"><Camera/></div>          
-            <div className="peoples"><Camera/></div>          
-            <div className="peoples"><Camera/></div>          
-            <div className="peoples"><Camera/></div>       
+            <div className="peoples"><Camera/></div>      
+             
           </div>
           <div className="side-Pannel">
-            <ChatScreen/>
+            {isChatshown && <ChatScreen/>}
           </div>
         </div>
         <div className="controller">
-          <Navbar/>             
+          <Navbar 
+            setIsChatShown={setIsChatShown}
+          />             
         </div>
       </div>
     </>
