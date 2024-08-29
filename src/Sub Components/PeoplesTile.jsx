@@ -8,7 +8,6 @@ function PeoplesTile({name}) {
     return( alpbhabets)
   }
 
-  
   return (
     <>
     <div className='peopleTile'>
