@@ -6,7 +6,9 @@ import "./Navbar.css";
 import HostName from "../Sub_components/HostName";
 // import ScreeShare from './ScreeShare'
 
-function Navbar({ setIsChatShown, setIsPeoplesList }) {
+function Navbar({ onSelect }) {
+
+  
   const [isMic, setIsMic] = useState(true);
   const [isCam, setIsCam] = useState(true);
   const [isRaise, setIsRaise] = useState(false);
