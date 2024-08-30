@@ -6,7 +6,7 @@ function Screen0() {
   const [userName, setUsername] = useState("");
   const [meetingType, setMeetingType] = useState('');
   const [showForm,  setShowForm] = useState(false)
- 
+  const navigator = useNavigate() 
  
   const handleOnChange = (event)=>{    
     event.target.id === "join_existing_meeting"? setShowForm(true): setShowForm(false)    
@@ -15,8 +15,10 @@ function Screen0() {
 
   const handleNextBtn =  ()=>{
     console.log('next clicked')
-    console.log(userName, meetingType)
+    navigator('/screen1')
   }
+
+
 
   return (
     <>
