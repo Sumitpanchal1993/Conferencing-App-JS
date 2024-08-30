@@ -45,7 +45,7 @@ function Navbar({ setIsChatShown, setIsPeoplesList }) {
         let doc = Array.from(document.getElementsByClassName('camera-view'))
         doc.forEach((item) => {
           setIsCam(!isCam)
-          {isCam ? item.style.display = 'none' : item.style.display='flex'}s     
+          {isCam ? item.style.display = 'none' : item.style.display='flex'}     
         })
       },
     },
