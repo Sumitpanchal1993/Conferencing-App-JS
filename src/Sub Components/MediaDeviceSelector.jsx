@@ -34,10 +34,6 @@ function MediaDeviceSelector({setCamera, setMicrophone, setSpeaker, setDevicesLi
     fetchDevices();
   }, []);
 
-
-
-
-
   const handleCameraChange = (event) => {
     setCamera(event.target.value)
     setSelectedCamera(event.target.value);
