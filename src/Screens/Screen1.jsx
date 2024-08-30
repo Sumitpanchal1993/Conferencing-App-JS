@@ -26,12 +26,13 @@ function cancelCall() {
   location.reload();
 }
 
-function Screen1({ setCamera, setMicrophone, setSpeaker, setDevicesList }) {
+function Screen1({ setCamera, setMicrophone, setSpeaker, setDevicesList, userName }) {
   return (
     <>
       <div className="screen1_base">
         <div className="screen1_title">
           <img src={Logo} alt="" />
+          <h3>{userName}</h3>
           <h3>Class Name</h3>
         </div>
         <div className="screen1_selector">

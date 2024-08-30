@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import "./Screen0.css";
 import { Link, useNavigate } from "react-router-dom";
 
-function Screen0() {
-  const [userName, setUsername] = useState("");
-  const [meetingType, setMeetingType] = useState('');
+function Screen0({setUserName }) {
+  // const [meetingType, setMeetingType] = useState('');
   const [showForm,  setShowForm] = useState(false)
+  const userName =useRef()
  
  
   const handleOnChange = (event)=>{    
@@ -13,8 +13,7 @@ function Screen0() {
   }
 
   const handleNextBtn =  ()=>{
-    console.log('next clicked')
-    console.log(userName, meetingType)
+    setUserName(userName.current.value)
   }
 
   return (
@@ -26,7 +25,7 @@ function Screen0() {
         <div>
           <div className="input_Selection">
             <label htmlFor="username">Enter Your Name:</label>
-            <input type="text" name="username" id="" />
+            <input type="text" name="username" id="" ref={userName}/>
           </div>
           <h4>Select the Meeting type:</h4>
           <div className="input_Selection">
