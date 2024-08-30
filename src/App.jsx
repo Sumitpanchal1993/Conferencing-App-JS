@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // import { fetchDevices } from "./Utility/FetchDevices";
@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // import { CallComposite, fromFlatCommunicationIdentifier, useAzureCommunicationCallAdapter } from "@azure/communication-react";
 
 // Custom Components imports
-// import Screen0 from "./Screens/Screen0";
+import Screen0 from "./Screens/Screen0";
 import Screen1 from "./Screens/Screen1";
 import Screen2 from "./Screens/Screen2";
 import Screen3 from "./Screens/Screen3";
@@ -30,6 +30,48 @@ function App() {
   const [chatForAll, setChatForAll] = useState(false); // for allowing all to chat
   const [isinstructorOnly, setisinstructorOnly] = useState(false); // for only instructor mode
 
+  useEffect(()=>{
+    async function fetchDevices() {
+      try {
+        const deviceList = await navigator.mediaDevices.enumerateDevices();      
+        setDevicesList(deviceList);
+      } 
+      catch (err) {
+        console.error("Error fetching media devices:", err);
+      }
+      
+    }
+    fetchDevices()
+  },[])
+
+  return (
+    <>
+      <Router>
+        <div className="appbase flexWraper">
+          <Routes>
+            <Route path="/test" element={<TestScreen />} />
+            <Route path="/" element={<Screen0 />} />
+            <Route
+              path="/screen1"
+              element={
+                <Screen1
+                  setCamera={setCamera}
+                  setMicrophone={setMicrophone}
+                  setSpeaker={setSpeaker}
+                  setDevicesList={setDevicesList}
+                />
+              }
+            />
+            <Route path="/screen2" element={<Screen2 />} />
+            <Route path="/screen3" element={<Screen3 />} />
+          </Routes>
+        </div>
+      </Router>
+    </>
+  );
+}
+
+export default App;
   // console.log(camera)
   // console.log(microphone)
   // console.log(speaker)
@@ -83,32 +125,3 @@ function App() {
   //Create ACS call adapter
 
   //  const callAdaper = useAzureCommunicationCallAdapter(callAdapterArgs);
-
-  return (
-    <>
-      <Router>
-        <div className="appbase flexWraper">
-          <Routes>
-            <Route path="/test" element={<TestScreen />} />
-            {/* <Route path="/screen0" element={<Screen0 />} /> */}
-            <Route
-              path="/"
-              element={
-                <Screen1
-                  setCamera={setCamera}
-                  setMicrophone={setMicrophone}
-                  setSpeaker={setSpeaker}
-                  setDevicesList={setDevicesList}
-                />
-              }
-            />
-            <Route path="/screen2" element={<Screen2 />} />
-            <Route path="/screen3" element={<Screen3 />} />
-          </Routes>
-        </div>
-      </Router>
-    </>
-  );
-}
-
-export default App;
