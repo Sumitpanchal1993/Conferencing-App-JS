@@ -2,18 +2,40 @@ import React, { useEffect, useState } from "react";
 import "./Screen2.css";
 import Navbar from "../Components/Navbar";
 import ChatScreen from "../Components/ChatScreen";
-import Camera from "../Sub Components/Camera";
-import PeoplesTile from "../Sub Components/PeoplesTile";
+import Camera from "../Sub_components/Camera";
+import PeoplesTile from "../Sub_components/PeoplesTile";
 import { attendees } from "../Static Data/PeoplesList";
+import MediaDeviceSelector from "../Sub_components/MediaDeviceSelector";
 
 function Screen2() {
+  const [selected, setSelected] = useState("");
+  const [peoples, setPeoples] = useState([]);
   const [isChatshown, setIsChatShown] = useState(false);
   const [isPeoplesList, setIsPeoplesList] = useState(false);
-  const [peoples, setPeoples] = useState([]);
 
   useEffect(() => {
     setPeoples(attendees);
   }, []);
+
+  const handleSelect = (option) => {
+    // Toggle the component visibility
+    setSelected((prevSelected) => (prevSelected === option ? "" : option));
+  };
+
+  const renderContent = () => {
+    switch (selected) {
+      case "chat":
+        return <ChatScreen />;
+      case "settings":
+        return <MediaDeviceSelector />;
+      case "people":
+        return peoples.map((item, index) => {
+          return <PeoplesTile key={index} name={item.name}  />;
+        });
+      default:
+        return "";
+    }
+  };
 
   return (
     <>
@@ -28,21 +50,17 @@ function Screen2() {
               );
             })}
           </div>
-          <div className="side-Pannel">
-            {isChatshown ? (
-              <ChatScreen />
-            ) : (
-              peoples.map((people) => {
-                return <PeoplesTile people={people} />;
-              })
-            )}
+          <div
+            className="side-Pannel"
+            style={{ display: selected ? "block" : "none" }}
+          >
+            {renderContent()}
           </div>
         </div>
         <div className="controller">
-          <Navbar
-            setIsChatShown={setIsChatShown}
-            setIsPeoplesList={setIsPeoplesList}
-          />
+          <div className="controller">
+            <Navbar onSelect={handleSelect} />
+          </div>
         </div>
       </div>
     </>
