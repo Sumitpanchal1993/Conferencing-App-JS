@@ -1,50 +1,37 @@
-import React, {useState} from "react";
-// import { Link } from "react-router-dom";
+import React, {useEffect, useState} from "react";
 import "./Screen2.css";
-import { useDispatch, useSelector } from "react-redux";
 import Navbar from '../Components/Navbar'
 import ChatScreen from "../Components/ChatScreen";
 import Camera from "../Sub Components/Camera";
-// import { increment, decrement } from "../Redux/CounterSlice"; 
 import PeoplesTile from "../Sub Components/PeoplesTile";
-
-
-const peoples = [
-  {name: 'Sumit'},
-  {name: 'Manoj'},
-  {name: 'Kanishk'},
-  {name: 'Ashwini'},
-  {name: 'Gokul'},
-  {name: 'Sujeet'},
-]
+import {attendees} from '../Static Data/PeoplesList'
 
 
 function Screen2() {
   const [isChatshown, setIsChatShown] = useState(false)  
   const [isPeoplesList, setIsPeoplesList] = useState(false)
+  const [peoples, setPeoples] = useState([])
 
+  useEffect(()=>{
+  setPeoples(attendees)
+  },[])
 
-  const storeData = useSelector((data) => {
-    return data.counter.value;
-  });
-  const dispatch = useDispatch();
   return (
     <>
       <div className="screen2-base">
         <div className="main-display">
-          <div className="screen">            
-            <div className="peoples"><Camera/></div>          
-            <div className="peoples"><Camera/></div>      
-            <div className="peoples"><Camera/></div>      
-            {/* <div className="peoples"><Camera/></div>      
-            <div className="peoples"><Camera/></div>      
-            <div className="peoples"><Camera/></div>      
-            <div className="peoples"><Camera/></div>       */}
-             
+          <div className="screen">
+            {
+              peoples.map((person)=>{
+                return(
+                  <div key={person.id} className="peoples"><Camera/></div>
+                )
+              })
+            }                      
           </div>
           <div className="side-Pannel">
-            {isChatshown ? <ChatScreen/>:peoples.map((item)=>{
-              return <PeoplesTile name={item.name}/>
+            {isChatshown ? <ChatScreen/>:peoples.map((people)=>{
+              return <PeoplesTile people ={people} />
             })}
           </div>
         </div>

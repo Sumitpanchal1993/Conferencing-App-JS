@@ -51,7 +51,7 @@ function Screen0() {
           }          
         </div>
         <div>
-          <button onClick={handleNextBtn}>Next</button>
+          <button onClick={handleNextBtn}><Link  to={'/screen1'}>Next</Link></button>
         </div>
       </div>
     </>
