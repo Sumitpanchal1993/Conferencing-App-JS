@@ -1,21 +1,19 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import "./Screen0.css";
 import { Link, useNavigate } from "react-router-dom";
 
-function Screen0() {
-  const [userName, setUsername] = useState("");
-  const [meetingType, setMeetingType] = useState('');
+function Screen0({setUserName }) {
+  // const [meetingType, setMeetingType] = useState('');
   const [showForm,  setShowForm] = useState(false)
-  const navigator = useNavigate() 
+  const userName =useRef()
+ 
  
   const handleOnChange = (event)=>{    
     event.target.id === "join_existing_meeting"? setShowForm(true): setShowForm(false)    
   }
 
-
   const handleNextBtn =  ()=>{
-    console.log('next clicked')
-    navigator('/screen1')
+    setUserName(userName.current.value)
   }
 
 
@@ -29,7 +27,7 @@ function Screen0() {
         <div>
           <div className="input_Selection">
             <label htmlFor="username">Enter Your Name:</label>
-            <input type="text" name="username" id="" />
+            <input type="text" name="username" id="" ref={userName}/>
           </div>
           <h4>Select the Meeting type:</h4>
           <div className="input_Selection">
@@ -54,7 +52,7 @@ function Screen0() {
           }          
         </div>
         <div>
-          <button onClick={handleNextBtn}>Next</button>
+          <button onClick={handleNextBtn}><Link  to={'/screen1'}>Next</Link></button>
         </div>
       </div>
     </>

@@ -50,7 +50,7 @@ function App() {
         <div className="appbase flexWraper">
           <Routes>
             <Route path="/test" element={<TestScreen />} />
-            <Route path="/" element={<Screen0 />} />
+            <Route path="/" element={<Screen0  setUserName={setUserName}/>} />
             <Route
               path="/screen1"
               element={
@@ -59,6 +59,7 @@ function App() {
                   setMicrophone={setMicrophone}
                   setSpeaker={setSpeaker}
                   setDevicesList={setDevicesList}
+                  userName={userName}
                 />
               }
             />

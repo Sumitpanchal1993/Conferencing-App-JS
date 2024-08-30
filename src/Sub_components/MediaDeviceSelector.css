@@ -1,0 +1,18 @@
+.option-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 15px 0px;
+}
+
+.media-comp-div {
+  width: 100%;
+  padding: 12px;
+}
+
+.media-comp-div select {
+  border: none !important;
+  padding: 5px;
+  width: min-content;
+  max-width: 100%;
+}

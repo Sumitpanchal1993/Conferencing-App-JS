@@ -1,13 +1,10 @@
 import React from 'react'
 import './HostName.css'
 
-
 function HostName() {
   return (
     <>
-    <div className='flexWraper'>
-
-    
+    <div className='flexWraper'>    
     <div className='circle'>    
       <p>SP</p>
     </div>

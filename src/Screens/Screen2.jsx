@@ -1,58 +1,66 @@
-import React, {useState} from "react";
-// import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import "./Screen2.css";
-import { useDispatch, useSelector } from "react-redux";
-import Navbar from '../Components/Navbar'
+import Navbar from "../Components/Navbar";
 import ChatScreen from "../Components/ChatScreen";
-import Camera from "../Sub Components/Camera";
-// import { increment, decrement } from "../Redux/CounterSlice"; 
-import PeoplesTile from "../Sub Components/PeoplesTile";
-
-
-const peoples = [
-  {name: 'Sumit'},
-  {name: 'Manoj'},
-  {name: 'Kanishk'},
-  {name: 'Ashwini'},
-  {name: 'Gokul'},
-  {name: 'Sujeet'},
-]
-
+import Camera from "../Sub_components/Camera";
+import PeoplesTile from "../Sub_components/PeoplesTile";
+import { attendees } from "../Static Data/PeoplesList";
+import MediaDeviceSelector from "../Sub_components/MediaDeviceSelector";
 
 function Screen2() {
-  const [isChatshown, setIsChatShown] = useState(false)  
-  const [isPeoplesList, setIsPeoplesList] = useState(false)
+  const [selected, setSelected] = useState("");
+  const [peoples, setPeoples] = useState([]);
+  const [isChatshown, setIsChatShown] = useState(false);
+  const [isPeoplesList, setIsPeoplesList] = useState(false);
 
+  useEffect(() => {
+    setPeoples(attendees);
+  }, []);
 
-  const storeData = useSelector((data) => {
-    return data.counter.value;
-  });
-  const dispatch = useDispatch();
+  const handleSelect = (option) => {
+    // Toggle the component visibility
+    setSelected((prevSelected) => (prevSelected === option ? "" : option));
+  };
+
+  const renderContent = () => {
+    switch (selected) {
+      case "chat":
+        return <ChatScreen />;
+      case "settings":
+        return <MediaDeviceSelector />;
+      case "people":
+        return peoples.map((item, index) => {
+          return <PeoplesTile key={index} name={item.name}  />;
+        });
+      default:
+        return "";
+    }
+  };
+
   return (
     <>
       <div className="screen2-base">
         <div className="main-display">
-          <div className="screen">            
-            <div className="peoples"><Camera/></div>          
-            <div className="peoples"><Camera/></div>      
-            <div className="peoples"><Camera/></div>      
-            {/* <div className="peoples"><Camera/></div>      
-            <div className="peoples"><Camera/></div>      
-            <div className="peoples"><Camera/></div>      
-            <div className="peoples"><Camera/></div>       */}
-             
-          </div>
-          <div className="side-Pannel">
-            {isChatshown ? <ChatScreen/>:peoples.map((item)=>{
-              return <PeoplesTile name={item.name}/>
+          <div className="screen">
+            {peoples.map((person) => {
+              return (
+                <div key={person.id} className="peoples">
+                  <Camera />
+                </div>
+              );
             })}
+          </div>
+          <div
+            className="side-Pannel"
+            style={{ display: selected ? "block" : "none" }}
+          >
+            {renderContent()}
           </div>
         </div>
         <div className="controller">
-          <Navbar 
-            setIsChatShown={setIsChatShown}
-            setIsPeoplesList={setIsPeoplesList}
-          />             
+          <div className="controller">
+            <Navbar onSelect={handleSelect} />
+          </div>
         </div>
       </div>
     </>
@@ -60,18 +68,3 @@ function Screen2() {
 }
 
 export default Screen2;
-
-//experiment
-// Main Screen consist of : video, controller, chat, peoples
-// <button>
-//   <Link to="/screen3">Click Me</Link>
-// </button>
-// <h1>{storeData}</h1>
-
-// <button onClick={()=>{dispatch(increment())}}>
-//   increment
-// </button>
-// <button onClick={()=>{dispatch(decrement())}}>
-//   decrement
-// </button>
-
