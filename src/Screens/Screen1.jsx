@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Camera from "../Sub Components/Camera";
+import Camera from "../Sub_components/Camera";
 // import Mic from "../Sub Components/Mic";
-import ToggleSwitch from "../Sub Components/ToggleSwitch";
+import ToggleSwitch from "../Sub_components/ToggleSwitch";
 // import HardwareSelector from "../Sub Components/HardwareSelector";
-import MediaDeviceSelector from "../Sub Components/MediaDeviceSelector";
+import MediaDeviceSelector from "../Sub_components/MediaDeviceSelector";
 import "./Screen1.css";
 import Logo from "../Media/Vagaro_Logo.png";
 
@@ -28,6 +28,13 @@ function cancelCall() {
 
 // Screen1 is Meting setting screen for all the users
 function Screen1({ camerasList, microphonesList, speakeresList, setCamera, setMicrophone, setSpeaker, userName, isHost}) {
+function Screen1({
+  setCamera,
+  setMicrophone,
+  setSpeaker,
+  setDevicesList,
+  userName,
+}) {
   return (
     <>
       <div className="screen1_base">
@@ -50,7 +57,6 @@ function Screen1({ camerasList, microphonesList, speakeresList, setCamera, setMi
             </div>
           </div>
           <div className="screen1_selector_RHS">
-            <h3>Manage Settings</h3>
             <MediaDeviceSelector
              camerasList={camerasList}
              microphonesList={microphonesList}
