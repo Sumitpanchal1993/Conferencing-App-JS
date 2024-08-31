@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import { fetchDevices } from "./Utility/FetchDevices";
 
 //Azure Imports
 // import { AzureCommunicationTokenCredential } from "@azure/communication-common";
@@ -14,16 +13,18 @@ import Screen2 from "./Screens/Screen2";
 import Screen3 from "./Screens/Screen3";
 import TestScreen from "./Screens/TestScreen";
 
+
 function App() {
   const [userToken, setUserToken] = useState(null); //for user token from backend
   const [userName, setUserName] = useState(null); //for user name
-  const [devicesList, setDevicesList] = useState(null);
-  const [camerasList, setCamerasList] = useState(null); //list of cameras
-  const [microphonesList, setMicrophonesList] = useState(null); //list of microphone
-  const [speakeresList, setSpeakersList] = useState(null); //list of audio output
-  const [camera, setCamera] = useState(null); //Selected camera
-  const [microphone, setMicrophone] = useState(null); //Selected microphone
-  const [speaker, setSpeaker] = useState(null); //Selected Speaker
+  const [isHost, setIsHost] = useState(null); // to set wheater the host is starting new meeting
+  const [devicesList, setDevicesList] = useState(null); //fetch in the app component
+  const [camerasList, setCamerasList] = useState(null); //list of cameras fetch in the app component 
+  const [microphonesList, setMicrophonesList] = useState(null); //list of microphone fetch in the app component
+  const [speakeresList, setSpeakersList] = useState(null); //list of audio output fetch in the app component
+  const [camera, setCamera] = useState(null); //Selected camera set by screen1
+  const [microphone, setMicrophone] = useState(null); //Selected microphone set by screen1
+  const [speaker, setSpeaker] = useState(null); //Selected Speaker set by screen1
   const [isRecording, setIsRecording] = useState(false); //for the recording status
   const [micForAll, setMicForAll] = useState(false); //for allowing mic for all
   const [videoForAll, setVideoForAll] = useState(false); // for allowing video for all
@@ -35,11 +36,23 @@ function App() {
       try {
         const deviceList = await navigator.mediaDevices.enumerateDevices();      
         setDevicesList(deviceList);
+
+        const cameras = deviceList.filter(
+          (device) => device.kind === "videoinput"
+        );
+        setCamerasList(cameras);
+        const microphones = deviceList.filter(
+          (device) => device.kind === "audioinput"
+        );
+        setMicrophonesList(microphones);
+        const speakers = deviceList.filter(
+          (device) => { return device.kind === "audiooutput";
+          });
+          setSpeakersList(speakers);
       } 
       catch (err) {
         console.error("Error fetching media devices:", err);
-      }
-      
+      }      
     }
     fetchDevices()
   },[])
@@ -50,21 +63,30 @@ function App() {
         <div className="appbase flexWraper">
           <Routes>
             <Route path="/test" element={<TestScreen />} />
-            <Route path="/" element={<Screen0  setUserName={setUserName}/>} />
+            <Route path="/" element={
+              <Screen0 
+               setUserName={setUserName}
+               setIsHost={setIsHost}
+               />} />
             <Route
               path="/screen1"
               element={
                 <Screen1
+                  camerasList={camerasList}
+                  microphonesList={microphonesList}
+                  speakeresList={speakeresList}
                   setCamera={setCamera}
                   setMicrophone={setMicrophone}
                   setSpeaker={setSpeaker}
-                  setDevicesList={setDevicesList}
                   userName={userName}
+                  isHost={isHost}
                 />
               }
             />
-            <Route path="/screen2" element={<Screen2 />} />
-            <Route path="/screen3" element={<Screen3 />} />
+            <Route path="/screen2" element={
+              <Screen2 />} />
+            <Route path="/screen3" element={
+              <Screen3 />} />
           </Routes>
         </div>
       </Router>
@@ -73,27 +95,9 @@ function App() {
 }
 
 export default App;
-  // console.log(camera)
-  // console.log(microphone)
-  // console.log(speaker)
 
-  // funcions
-  // const fetchDevices = async () => {
-  //   try {
-  //     const deviceList = await navigator.mediaDevices.enumerateDevices();
-  //     const cameras = deviceList.filter((device) => device.kind === "videoinput");
-  //     const microphones = deviceList.filter((device) => device.kind === "audioinput");
-  //     const speakers = deviceList.filter((device) => device.kind === "audiooutput");
-  //     console.table(deviceList);
-  //     setCamerasList(cameras);
-  //     setMicrophonesList(microphones);
-  //     setSpeakersList(speakers);
-  //     setDevices(deviceList);
-  //   } catch (err) {
-  //     console.error("Error fetching media devices:", err);
-  //   }
-  // };
 
+//  Experiments
   // const displayName = 'Sumit Panchal'
 
   // Define the ACS User Details here

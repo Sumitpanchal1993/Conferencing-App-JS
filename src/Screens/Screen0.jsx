@@ -2,18 +2,32 @@ import React, { useRef, useState } from "react";
 import "./Screen0.css";
 import { Link, useNavigate } from "react-router-dom";
 
-function Screen0({setUserName }) {
-  // const [meetingType, setMeetingType] = useState('');
-  const [showForm,  setShowForm] = useState(false)
+function Screen0({setUserName, setIsHost }) {
+  const [showForm,  setShowForm] = useState(null);
+
   const userName =useRef()
- 
+  const navigate = useNavigate()
  
   const handleOnChange = (event)=>{    
-    event.target.id === "join_existing_meeting"? setShowForm(true): setShowForm(false)    
+    if(event.target.id === "join_existing_meeting"){
+      setShowForm(true);
+      setIsHost(false);
+    }else{
+      setShowForm(false);
+      setIsHost(true)
+    }
   }
-
   const handleNextBtn =  ()=>{
-    setUserName(userName.current.value)
+    let checkName =  userName.current.value.trim()
+    console.log(checkName)
+    if(checkName === ''){
+      alert("Please Enter Your Name")
+    }else if(showForm === null){
+      alert("Please Choose one from meeting options")
+    }else{
+      setUserName(userName.current.value);
+      navigate('/screen1')
+    }
   }
 
   return (
@@ -22,16 +36,20 @@ function Screen0({setUserName }) {
         <div>
           <h1>Welcome to Vagaro Team Meeting App</h1>
         </div>
+        <hr />
         <div>
           <div className="input_Selection">
-            <label htmlFor="username">Enter Your Name:</label>
+            <label htmlFor="username">Enter Your Full Name:</label>
             <input type="text" name="username" id="" ref={userName}/>
           </div>
+    
           <h4>Select the Meeting type:</h4>
+          <hr />
           <div className="input_Selection">
             <label htmlFor="meeting_type">Start New Meeting</label>
             <input type="radio" name="meeting_type" id="start_new_meeting" value={'newMeeting'} onClick={(e)=>{handleOnChange(e)}}/>
           </div>
+        
           <div className='input_Selection'>
             <label htmlFor="meeting_type">Join Existing Meeting</label>
             <input type="radio" name="meeting_type" id="join_existing_meeting" value={"existingMeeting"} onClick={(e)=>{handleOnChange(e)}}/>
@@ -49,8 +67,9 @@ function Screen0({setUserName }) {
           </>
           }          
         </div>
+        <hr />
         <div>
-          <button onClick={handleNextBtn}><Link  to={'/screen1'}>Next</Link></button>
+          <button onClick={handleNextBtn}>Next</button>
         </div>
       </div>
     </>

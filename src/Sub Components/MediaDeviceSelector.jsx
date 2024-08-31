@@ -1,38 +1,38 @@
 import React, { useEffect, useState } from "react";
 import "./MediaDeviceSelector.css";
 
-function MediaDeviceSelector({setCamera, setMicrophone, setSpeaker, setDevicesList}) {
-  const [cameras, setCameras] = useState([]);
-  const [microphones, setMicrophones] = useState([]);
-  const [speakers, setSpeakers] = useState([]);
+function MediaDeviceSelector({camerasList,  microphonesList, speakeresList, setCamera, setMicrophone, setSpeaker}) {
+  // const [cameras, setCameras] = useState([]);
+  // const [microphones, setMicrophones] = useState([]);
+  // const [speakers, setSpeakers] = useState([]);
   const [selectedCamera, setSelectedCamera] = useState("");
   const [selectedMicrophone, setSelectedMicrophone] = useState("");
   const [selectedSpeaker, setSelectedSpeaker] = useState("");
 
-  useEffect(() => {
-    const fetchDevices = async () => {
-      try {
-        const deviceList = await navigator.mediaDevices.enumerateDevices();
-        const cameras = deviceList.filter(
-          (device) => device.kind === "videoinput"
-        );
-        const microphones = deviceList.filter(
-          (device) => device.kind === "audioinput"
-        );
-        const speakers = deviceList.filter(
-          (device) => { return device.kind === "audiooutput";
-        });
-        setCameras(cameras);
-        setMicrophones(microphones);
-        setSpeakers(speakers);
-        setDevicesList(deviceList);
-      } catch (err) {
-        console.error("Error fetching media devices:", err);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchDevices = async () => {
+  //     try {
+  //       const deviceList = await navigator.mediaDevices.enumerateDevices();
+  //       const cameras = deviceList.filter(
+  //         (device) => device.kind === "videoinput"
+  //       );
+  //       const microphones = deviceList.filter(
+  //         (device) => device.kind === "audioinput"
+  //       );
+  //       const speakers = deviceList.filter(
+  //         (device) => { return device.kind === "audiooutput";
+  //       });
+  //       setCameras(cameras);
+  //       setMicrophones(microphones);
+  //       setSpeakers(speakers);
+  //       setDevicesList(deviceList);
+  //     } catch (err) {
+  //       console.error("Error fetching media devices:", err);
+  //     }
+  //   };
 
-    fetchDevices();
-  }, []);
+  //   fetchDevices();
+  // }, []);
 
   const handleCameraChange = (event) => {
     setCamera(event.target.value)
@@ -60,7 +60,7 @@ function MediaDeviceSelector({setCamera, setMicrophone, setSpeaker, setDevicesLi
           onChange={handleCameraChange}
         >
           <option value="">Select a camera</option>
-          {cameras.map((camera) => (
+          {camerasList.map((camera) => (
             <option key={camera.deviceId} value={camera.deviceId}>
               {camera.label || "Unnamed Camera"}
             </option>
@@ -76,7 +76,7 @@ function MediaDeviceSelector({setCamera, setMicrophone, setSpeaker, setDevicesLi
           onChange={handleMicrophoneChange}
         >
           <option value="">Select a microphone</option>
-          {microphones.map((microphone) => (
+          {microphonesList.map((microphone) => (
             <option key={microphone.deviceId} value={microphone.deviceId}>
               {microphone.label || "Unnamed Microphone"}
             </option>
@@ -91,7 +91,7 @@ function MediaDeviceSelector({setCamera, setMicrophone, setSpeaker, setDevicesLi
           onChange={handleSpeakerChange}
         >
           <option value="">Select a Speaker</option>
-          {speakers.map((speaker) => (
+          {speakeresList.map((speaker) => (
             <option key={speaker.deviceId} value={speaker.deviceId}>
               {speaker.label || "Unnamed Microphone"}
             </option>
