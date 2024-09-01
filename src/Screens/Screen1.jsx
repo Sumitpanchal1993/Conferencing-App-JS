@@ -28,13 +28,6 @@ function cancelCall() {
 
 // Screen1 is Meting setting screen for all the users
 function Screen1({ camerasList, microphonesList, speakeresList, setCamera, setMicrophone, setSpeaker, userName, isHost}) {
-function Screen1({
-  setCamera,
-  setMicrophone,
-  setSpeaker,
-  setDevicesList,
-  userName,
-}) {
   return (
     <>
       <div className="screen1_base">
