@@ -17,7 +17,7 @@ function Navbar({ onSelect }) {
   // an Array for the navbar function and display icon
   const buttonIcons = [
     {
-      icon: <span className="material-symbols-outlined">desktop_windows</span>,
+      icon: <span className="material-symbols-outlined"> present_to_all   </span>,
       work: async () => {
         try {
           const stream = await navigator.mediaDevices.getDisplayMedia({
