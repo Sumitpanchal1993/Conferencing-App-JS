@@ -29,6 +29,7 @@ function App() {
   const [videoForAll, setVideoForAll] = useState(false); // for allowing video for all
   const [chatForAll, setChatForAll] = useState(false); // for allowing all to chat
   const [isinstructorOnly, setisinstructorOnly] = useState(false); // for only instructor mode
+  const [credentials, setCredentials] = useState(null); //for azure communication token credentials
 
   useEffect(()=>{
     async function fetchDevices() {
@@ -50,8 +51,8 @@ function App() {
         <div className="appbase flexWraper">
           <Routes>
             <Route path="/test" element={<TestScreen />} />
-            <Route path="/" element={<Screen0  setUserName={setUserName}/>} />
-            <Route
+            <Route path="/" element={<Screen0  setUserName={setUserName} setCredentials={setCredentials}  credentials={credentials} />} />
+            {/* <Route
               path="/screen1"
               element={
                 <Screen1
@@ -60,9 +61,10 @@ function App() {
                   setSpeaker={setSpeaker}
                   setDevicesList={setDevicesList}
                   userName={userName}
+                  credentials={credentials}
                 />
               }
-            />
+            /> */}
             <Route path="/screen2" element={<Screen2 />} />
             <Route path="/screen3" element={<Screen3 />} />
           </Routes>
