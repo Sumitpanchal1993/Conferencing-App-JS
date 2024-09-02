@@ -8,7 +8,10 @@ import "./Screen1.css";
 import Logo from "../Media/Vagaro_Logo.png";
 import { createLocalVideoStream } from "../Utility/CameraAccess";
 import Cretentails from "../../Cretentails.json";
-
+// import Cretentails from './Cretentails.json';
+import displayLocalVideoStream from "../Utility/DisplayLocalVideoStream";
+import removeLocalVideoStream from "../Utility/RemoveLocalVideoStream";
+import { VideoStreamRenderer } from "@azure/communication-calling";
 // For Host Controls options
 const optionArray = [
   "Start Recording",
@@ -31,19 +34,44 @@ function Screen1({
   userName,
 }) {
 
+  // async function startCall() {
+  //   console.log(Cretentails, "Cretentails.callAgent");
+  //   try {
+  //     const localVideoStream = await createLocalVideoStream();
+  //     const videoOptions = localVideoStream ? { localVideoStreams: [localVideoStream] } : undefined;
+  //     Cretentails.call = Cretentails.callAgent.startCall([{ communicationUserId: Credential.END_USER_ID }], { videoOptions });
+  //     // Subscribe to the call's properties and events.
+  //     subscribeToCall(Cretentails.call);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  
+  // }
+
   async function startCall() {
     console.log(Cretentails, "Cretentails.callAgent");
     try {
       const localVideoStream = await createLocalVideoStream();
       const videoOptions = localVideoStream ? { localVideoStreams: [localVideoStream] } : undefined;
-      Cretentails.call = Cretentails.callAgent.startCall([{ communicationUserId: Credential.END_USER_ID }], { videoOptions });
+      Cretentails.call = Cretentails.callAgent.startCall([{ communicationUserId: Cretentails.END_USER_ID }], { videoOptions });
       // Subscribe to the call's properties and events.
       subscribeToCall(Cretentails.call);
+  
+      // Save the updated Cretentails object
+      saveCretentails();
     } catch (error) {
       console.error(error);
     }
-  
   }
+  
+  const saveCretentails = (credentials) => {
+    try {
+        localStorage.setItem('credentials', JSON.stringify(credentials));
+        console.log('Credentials saved successfully');
+    } catch (error) {
+        console.error('Error saving credentials:', error);
+    }
+};
 
 
   const subscribeToCall = (call) => {
@@ -61,19 +89,19 @@ function Screen1({
         call.on('stateChanged', async () => {
             console.log(`Call state changed: ${call.state}`);
             if(call.state === 'Connected') {
-                connectedLabel.hidden = false;
-                acceptCallButton.disabled = true;
-                startCallButton.disabled = true;
-                hangUpCallButton.disabled = false;
-                startVideoButton.disabled = false;
-                stopVideoButton.disabled = false;
-                remoteVideosGallery.hidden = false;
+                // connectedLabel.hidden = false;
+                // acceptCallButton.disabled = true;
+                // startCallButton.disabled = true;
+                // hangUpCallButton.disabled = false;
+                // startVideoButton.disabled = false;
+                // stopVideoButton.disabled = false;
+                // remoteVideosGallery.hidden = false;
             } else if (call.state === 'Disconnected') {
-                connectedLabel.hidden = true;
-                startCallButton.disabled = false;
-                hangUpCallButton.disabled = true;
-                startVideoButton.disabled = true;
-                stopVideoButton.disabled = true;
+                // connectedLabel.hidden = true;
+                // startCallButton.disabled = false;
+                // hangUpCallButton.disabled = true;
+                // startVideoButton.disabled = true;
+                // stopVideoButton.disabled = true;
                 console.log(`Call ended, call end reason={code=${call.callEndReason.code}, subCode=${call.callEndReason.subCode}}`);
             }   
         });
@@ -83,16 +111,16 @@ function Screen1({
         });
         console.log(`isLocalVideoStarted: ${call.isLocalVideoStarted}`);
         call.localVideoStreams.forEach(async (lvs) => {
-            localVideoStream = lvs;
-            await displayLocalVideoStream();
+            Cretentails.localVideoStream = lvs;
+            // await displayLocalVideoStream();
         });
         call.on('localVideoStreamsUpdated', e => {
             e.added.forEach(async (lvs) => {
-                localVideoStream = lvs;
-                await displayLocalVideoStream();
+              Cretentails.localVideoStream = lvs;
+                // await displayLocalVideoStream();
             });
             e.removed.forEach(lvs => {
-               removeLocalVideoStream();
+              //  removeLocalVideoStream();
             });
         });
         
@@ -117,6 +145,29 @@ function Screen1({
     }
 }
 
+
+// Screen1.jsx
+
+// Define the subscribeToRemoteParticipant function
+const subscribeToRemoteParticipant = (participant) => {
+  participant.on('videoStreamsUpdated', (event) => {
+      event.added.forEach((videoStream) => {
+          if (videoStream.isAvailable) {
+              // Handle the video stream
+              const remoteVideoStreamRenderer = new VideoStreamRenderer(videoStream);
+              remoteVideoStreamRenderer.createView().then((view) => {
+                  document.getElementById('remoteVideoContainer').appendChild(view.target);
+              });
+          }
+      });
+  });
+};
+
+
+
+
+// Example usage
+// startCall();
 
   return (
     <>
