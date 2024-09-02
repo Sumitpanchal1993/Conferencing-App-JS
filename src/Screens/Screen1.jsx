@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Camera from "../Sub_components/Camera";
 // import Mic from "../Sub Components/Mic";
@@ -26,13 +26,8 @@ function cancelCall() {
   location.reload();
 }
 
-function Screen1({
-  setCamera,
-  setMicrophone,
-  setSpeaker,
-  setDevicesList,
-  userName,
-}) {
+// Screen1 is Meting setting screen for all the users
+function Screen1({ camerasList, microphonesList, speakeresList, setCamera, setMicrophone, setSpeaker, userName, isHost}) {
   return (
     <>
       <div className="screen1_base">
@@ -44,29 +39,34 @@ function Screen1({
         <div className="screen1_selector">
           <div className="screen1_selector_LHS">
             <div className="cam-display">
-              <Camera />
+              <Camera cameraID={''} />
             </div>
             <div>
-              {optionArray.map((item, index) => {
+              {isHost && <h3>Host Settings</h3>}
+
+              {isHost && optionArray.map((item, index) => {
                 return <ToggleSwitch label={item} key={index} />;
               })}
             </div>
           </div>
           <div className="screen1_selector_RHS">
             <MediaDeviceSelector
-              setCamera={setCamera}
-              setMicrophone={setMicrophone}
-              setSpeaker={setSpeaker}
-              setDevicesList={setDevicesList}
+             camerasList={camerasList}
+             microphonesList={microphonesList}
+             speakeresList={speakeresList}
+             setCamera={setCamera}
+             setMicrophone={setMicrophone}
+             setSpeaker={setSpeaker}
             />
           </div>
         </div>
         <hr />
         <div>
-          <button onClick={startCall}>
-            <Link to="/screen2">Start Call</Link>{" "}
+          {/* Start Button will create the new meeting Link by calling server and related Parameters */}
+          <button onClick={startCall}>  
+            <Link to="/screen2">Start Call</Link>{" "}   
           </button>
-          <button onClick={cancelCall}>Cancel</button>
+          <button onClick={cancelCall}><Link to={'/'}>Cancel</Link></button> 
         </div>
       </div>
     </>

@@ -1,7 +1,7 @@
 import React from 'react'
 import './PeoplesTile.css'
 
-function PeoplesTile({name}) {
+function PeoplesTile({people}) {
 
   function sliceName (name){
     let alpbhabets = name.slice(0, 2).toUpperCase()
@@ -12,12 +12,13 @@ function PeoplesTile({name}) {
     <>
     <div className='peopleTile'>
         <div className='details flexWraper'>
-            <div className="userImage flexWraper">{sliceName(name)}</div>
-            <div className="name">{name}</div>
+            <div className="userImage flexWraper">{sliceName(people.name)}</div>
+            <div className="name">{people.name}</div>
         </div>
         <div className='devices'>
-            <span className="material-symbols-outlined">videocam</span>
-            <span className="material-symbols-outlined">mic</span>
+            <span className="material-symbols-outlined">{people.isCameraOn ? "videocam" : "videocam_off"}</span>
+            <span className="material-symbols-outlined">{people.isMicOn? 'mic' : "mic_off"}</span>
+            <span className="material-symbols-outlined">{people.isScreenShared? 'present_to_all' : ""}</span>
         </div>
 
 
@@ -26,5 +27,6 @@ function PeoplesTile({name}) {
     </>
   )
 }
+
 
 export default PeoplesTile
