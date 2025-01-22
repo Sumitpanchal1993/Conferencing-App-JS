@@ -1,110 +1,99 @@
-import React, { useEffect, useState } from "react";
-import "./MediaDeviceSelector.css";
+import React, { useState, useEffect } from 'react';
 
-function MediaDeviceSelector({
-  setCamera,
-  setMicrophone,
-  setSpeaker,
-  setDevicesList,
-}) {
+const MediaDeviceSelector = () => {
+  const [devicesList, setDevicesList] = useState([]);
   const [cameras, setCameras] = useState([]);
   const [microphones, setMicrophones] = useState([]);
   const [speakers, setSpeakers] = useState([]);
-  const [selectedCamera, setSelectedCamera] = useState("");
-  const [selectedMicrophone, setSelectedMicrophone] = useState("");
-  const [selectedSpeaker, setSelectedSpeaker] = useState("");
+  const [selectedCamera, setSelectedCamera] = useState('');
+  const [selectedMicrophone, setSelectedMicrophone] = useState('');
+  const [selectedSpeaker, setSelectedSpeaker] = useState('');
+
+  const fetchDevices = async () => {
+    try {
+      const devices = await navigator.mediaDevices.enumerateDevices();
+      setDevicesList(devices);
+
+      const cameras = devices.filter(device => device.kind === 'videoinput');
+      const microphones = devices.filter(device => device.kind === 'audioinput');
+      const speakers = devices.filter(device => device.kind === 'audiooutput');
+
+      setCameras(cameras);
+      setMicrophones(microphones);
+      setSpeakers(speakers);
+    } catch (error) {
+      console.error('Error fetching media devices:', error);
+    }
+  };
 
   useEffect(() => {
-    const fetchDevices = async () => {
-      try {
-        const deviceList = await navigator.mediaDevices.enumerateDevices();
-        const cameras = deviceList.filter(
-          (device) => device.kind === "videoinput"
-        );
-        const microphones = deviceList.filter(
-          (device) => device.kind === "audioinput"
-        );
-        const speakers = deviceList.filter((device) => {
-          return device.kind === "audiooutput";
-        });
-        setCameras(cameras);
-        setMicrophones(microphones);
-        setSpeakers(speakers);
-        setDevicesList(deviceList);
-      } catch (err) {
-        console.error("Error fetching media devices:", err);
-      }
-    };
-
     fetchDevices();
   }, []);
 
   const handleCameraChange = (event) => {
-    setCamera(event.target.value);
     setSelectedCamera(event.target.value);
   };
 
   const handleMicrophoneChange = (event) => {
-    setMicrophone(event.target.value);
     setSelectedMicrophone(event.target.value);
   };
 
   const handleSpeakerChange = (event) => {
-    setSpeaker(event.target.value);
     setSelectedSpeaker(event.target.value);
   };
 
   return (
-      <div className="media-comp-div">
-        <h3>Manage Settings</h3>
-        <div className="option-container">
-          <label htmlFor="camera-select">Select Camera:</label>
-          <select
-            id="camera-select"
-            value={selectedCamera}
-            onChange={handleCameraChange}
-          >
-            {/* <option value="">Select a camera</option> */}
-            {cameras.map((camera) => (
-              <option key={camera.deviceId} value={camera.deviceId}>
-                {camera.label || "Unnamed Camera"}
-              </option>
-            ))}
-          </select>
-        </div>
+    <div className="media-comp-div">
+      <h3>Manage Settings</h3>
+      <div className="option-container">
+        <label htmlFor="camera-select">Select Camera:</label>
+        <select
+          id="camera-select"
+          value={selectedCamera}
+          onChange={handleCameraChange}
+        >
+          <option value="">Select a camera</option>
+          {cameras.map((camera) => (
+            <option key={camera.deviceId} value={camera.deviceId}>
+              {camera.label || "Unnamed Camera"}
+            </option>
+          ))}
+        </select>
+      </div>
 
-        <div className="option-container">
-          <label htmlFor="microphone-select">Select Microphone:</label>
-          <select
-            id="microphone-select"
-            value={selectedMicrophone}
-            onChange={handleMicrophoneChange}
-          >
-            {/* <option value="">Select a microphone</option> */}
-            {microphones.map((microphone) => (
-              <option key={microphone.deviceId} value={microphone.deviceId}>
-                {microphone.label || "Unnamed Microphone"}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="option-container">
-          <label htmlFor="microphone-select">Select Speaker:</label>
-          <select
-            id="microphone-select"
-            value={selectedSpeaker}
-            onChange={handleSpeakerChange}
-          >
-            {/* <option value="">Select a Speaker</option> */}
-            {speakers.map((speaker) => (
-              <option key={speaker.deviceId} value={speaker.deviceId}>
-                {speaker.label || "Unnamed Microphone"}
-              </option>
-            ))}
-          </select>
-        </div>
+      <div className="option-container">
+        <label htmlFor="microphone-select">Select Microphone:</label>
+        <select
+          id="microphone-select"
+          value={selectedMicrophone}
+          onChange={handleMicrophoneChange}
+        >
+          <option value="">Select a microphone</option>
+          {microphones.map((microphone) => (
+            <option key={microphone.deviceId} value={microphone.deviceId}>
+              {microphone.label || "Unnamed Microphone"}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div className="option-container">
+        <label htmlFor="speaker-select">Select Speaker:</label>
+        <select
+          id="speaker-select"
+          value={selectedSpeaker}
+          onChange={handleSpeakerChange}
+        >
+          <option value="">Select a speaker</option>
+          {speakers.map((speaker) => (
+            <option key={speaker.deviceId} value={speaker.deviceId}>
+              {speaker.label || "Unnamed Speaker"}
+            </option>
+          ))}
+        </select>
+      </div>
     </div>
   );
-}
+};
 
 export default MediaDeviceSelector;
