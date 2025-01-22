@@ -16,7 +16,7 @@ function Screen3() {
         textFeedback
       })
   }
-   console.log(feedback)
+  
 
   return (
     <>

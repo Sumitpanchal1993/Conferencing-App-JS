@@ -1,3 +1,6 @@
+
+import React, { useState } from "react";
+
 import { Link } from "react-router-dom";
 import Camera from "../Sub_components/Camera";
 // import Mic from "../Sub Components/Mic";
@@ -180,20 +183,24 @@ const subscribeToRemoteParticipant = (participant) => {
         <div className="screen1_selector">
           <div className="screen1_selector_LHS">
             <div className="cam-display">
-              <Camera />
+              <Camera cameraID={''} />
             </div>
             <div>
-              {optionArray.map((item, index) => {
+              {isHost && <h3>Host Settings</h3>}
+
+              {isHost && optionArray.map((item, index) => {
                 return <ToggleSwitch label={item} key={index} />;
               })}
             </div>
           </div>
           <div className="screen1_selector_RHS">
             <MediaDeviceSelector
-              setCamera={setCamera}
-              setMicrophone={setMicrophone}
-              setSpeaker={setSpeaker}
-              setDevicesList={setDevicesList}
+             camerasList={camerasList}
+             microphonesList={microphonesList}
+             speakeresList={speakeresList}
+             setCamera={setCamera}
+             setMicrophone={setMicrophone}
+             setSpeaker={setSpeaker}
             />
           </div>
         </div>
@@ -204,7 +211,7 @@ const subscribeToRemoteParticipant = (participant) => {
             // to="/screen2"
             >Start Call</Link>{" "}
           </button>
-          <button onClick={cancelCall}>Cancel</button>
+          <button onClick={cancelCall}><Link to={'/'}>Cancel</Link></button> 
         </div>
       </div>
     </>

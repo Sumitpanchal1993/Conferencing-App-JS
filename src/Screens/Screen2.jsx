@@ -29,8 +29,8 @@ function Screen2() {
       case "settings":
         return <MediaDeviceSelector />;
       case "people":
-        return peoples.map((item, index) => {
-          return <PeoplesTile key={index} name={item.name}  />;
+        return peoples.map((people, index) => {
+          return <PeoplesTile key={index} people={people}  />;
         });
       default:
         return "";

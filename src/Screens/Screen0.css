@@ -13,6 +13,25 @@
 .input_Selection{
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     justify-content: space-between;
     gap: 10px;
+    margin: 10px;
+}
+
+.input_Selection input[type='text'], input[type='password'] {
+    border: none;
+    width: 100%;
+        flex: 1;
+    padding: 8px;
+    /* border: 1px solid #ddd; */
+    border-radius: 5px;
+    margin-right: 5px;
+    outline: none;
+}
+
+
+.input_Selection input[type='radio']{
+    transform: scale(1.5);
+
 }
